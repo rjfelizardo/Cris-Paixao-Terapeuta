@@ -84,15 +84,17 @@ export default function Home() {
         <Link href="/agendar" className="btn btn-primary mt-8 md:max-w-xs">Agendar minha sessão</Link>
       </section>
 
-      <footer className="bg-ink px-6 py-10 text-center text-[#f3ebf9]">
-        <div className="mx-auto flex max-w-5xl flex-col items-center gap-4">
-          <img src="/logo.png" alt="" className="h-12 w-auto rounded-xl bg-cream px-3 py-1.5" />
-          <p className="font-display text-2xl">Trate-se com elegância.</p>
+      <footer className="bg-ink px-6 py-8 text-[#f3ebf9]">
+        <div className="mx-auto flex max-w-5xl flex-col items-center gap-5 text-center md:flex-row md:justify-between md:text-left">
+          <img src="/logo.png" alt="Cris Paixão Espaço Terapêutico" className="h-24 w-auto rounded-2xl bg-cream px-4 py-2 md:h-28" />
+          <div className="flex flex-col items-center gap-1 md:items-start">
+            <p className="font-display text-2xl">Trate-se com elegância.</p>
+            <p className="text-sm text-[#cdbbdd]">© Cris Paixão Espaço Terapêutico · [CNPJ ou registro profissional]</p>
+          </div>
           <div className="flex gap-3">
             <a href="https://instagram.com/crispaixaoterapeuta" className="flex min-h-11 items-center rounded-full border border-[#bfa8d6] px-5 font-semibold">Instagram</a>
             <a href="#" className="flex min-h-11 items-center rounded-full border border-[#bfa8d6] px-5 font-semibold">WhatsApp</a>
           </div>
-          <p className="text-sm text-[#cdbbdd]">© Cris Paixão Espaço Terapêutico · [CNPJ ou registro profissional]</p>
         </div>
       </footer>
     </main>
