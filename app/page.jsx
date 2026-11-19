@@ -21,7 +21,10 @@ export default function Home() {
             </div>
           </div>
           <div className="flex flex-col gap-5 text-center md:text-left">
-            <span className="eyebrow">Espaço Terapêutico</span>
+            <div className="flex items-center justify-center gap-3 md:justify-start">
+              <img src="/logo-cp.png" alt="" className="h-12 w-auto" />
+              <span className="eyebrow">Espaço Terapêutico</span>
+            </div>
             <h1 className="font-display text-[2.4rem] font-semibold leading-[1.1] md:text-5xl">
               Quem olha para dentro <em className="text-plum">desperta</em>
             </h1>
