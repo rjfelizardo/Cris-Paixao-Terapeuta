@@ -13,7 +13,7 @@ export const metadata = {
     siteName: "Cris Paixão Espaço Terapêutico",
     locale: "pt_BR",
     type: "website",
-    images: [{ url: "/og.png", width: 300, height: 300, alt: "Cris Paixão Espaço Terapêutico" }],
+    images: [{ url: "/og.png", width: 200, height: 200, alt: "Cris Paixão Espaço Terapêutico" }],
   },
   twitter: { card: "summary", images: ["/og.png"] },
 };
