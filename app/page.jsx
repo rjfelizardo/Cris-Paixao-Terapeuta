@@ -41,7 +41,7 @@ export default function Home() {
 
       <section id="servicos" className="mx-auto max-w-5xl px-6 py-12">
         <h2 className="font-display text-3xl font-semibold">O atendimento</h2>
-        <p className="mt-1 text-soft">Um único atendimento, pensado para o seu momento.</p>
+        <p className="mt-1 text-soft">Um atendimento especializado, feito para o seu momento.</p>
         <article className="card mt-6 flex flex-col gap-4 p-6 md:flex-row md:items-center md:justify-between md:p-8">
           <div className="flex flex-col gap-2 md:max-w-xl">
             <h3 className="font-display text-2xl font-semibold text-plum">{SERVICO.nome}</h3>
