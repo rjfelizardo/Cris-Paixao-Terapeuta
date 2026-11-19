@@ -61,7 +61,7 @@ export default function Agendar() {
               <Opcao key={h} on={hora === i} onClick={() => setHora(i)} className="min-h-12">{h}</Opcao>
             ))}
           </div>
-          <p className="text-sm text-soft">Horários de Brasília. Depois do pagamento, o link da sessão chega por e-mail.</p>
+          <p className="text-sm text-soft">Horários de Brasília. Depois do pagamento, o link da sessão chega por e-mail e WhatsApp.</p>
         </section>
 
         <div className="card flex flex-col gap-3 p-4">

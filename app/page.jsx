@@ -5,7 +5,7 @@ import { SERVICO } from "../components/Servicos";
 const PASSOS = [
   ["Escolha o dia e o horário", "Veja os horários livres da agenda e reserve o seu."],
   ["Pague com Pix ou cartão", "A confirmação é imediata e o contrato é assinado na mesma tela."],
-  ["Receba o link da sessão", "O link do Google Meet chega por e-mail, com lembretes antes do horário."],
+  ["Receba o link da sessão", "O link do Google Meet chega por e-mail e WhatsApp, com lembretes antes do horário."],
 ];
 
 export default function Home() {

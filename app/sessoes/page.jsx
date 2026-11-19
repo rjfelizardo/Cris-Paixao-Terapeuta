@@ -18,7 +18,7 @@ export default function Sessoes() {
           <p className="font-display text-3xl font-semibold leading-tight">Quarta, 14 de janeiro<br />às 11:00</p>
           <p className="text-[#e7daf3]">Terapia Holística e Integrativa · online</p>
           <a href="#" className="btn bg-white text-ink">Entrar na sessão</a>
-          <p className="text-sm text-[#e7daf3]">O botão libera 10 minutos antes do horário. O link também foi enviado por e-mail.</p>
+          <p className="text-sm text-[#e7daf3]">O botão libera 10 minutos antes do horário. O link também foi enviado por e-mail e WhatsApp.</p>
         </section>
 
         <section className="flex flex-col gap-2">
