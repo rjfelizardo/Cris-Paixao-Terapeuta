@@ -13,7 +13,7 @@ export default function Home() {
     <main>
       <Header espaco={false} />
 
-      <section className="bg-gradient-to-b from-lav to-cream">
+      <section className="hero-fundo">
         <div className="mx-auto grid max-w-5xl items-center gap-8 px-6 pb-10 pt-20 md:grid-cols-2 md:py-16">
           <div className="flex justify-center md:order-2">
             <div className="h-56 w-56 overflow-hidden rounded-full border-4 border-lav-line md:h-80 md:w-80">
