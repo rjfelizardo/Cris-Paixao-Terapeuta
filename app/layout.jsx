@@ -13,9 +13,9 @@ export const metadata = {
     siteName: "Cris Paixão Espaço Terapêutico",
     locale: "pt_BR",
     type: "website",
-    images: [{ url: "/og.png", width: 1200, height: 630, alt: "Cris Paixão Espaço Terapêutico" }],
+    images: [{ url: "/og.png", width: 300, height: 300, alt: "Cris Paixão Espaço Terapêutico" }],
   },
-  twitter: { card: "summary_large_image", images: ["/og.png"] },
+  twitter: { card: "summary", images: ["/og.png"] },
 };
 
 export default function RootLayout({ children }) {
