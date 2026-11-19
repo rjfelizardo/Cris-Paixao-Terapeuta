@@ -13,7 +13,9 @@ const ITENS = [
 
 export default function PainelNav() {
   const path = usePathname();
+
   return (
+    <>
     <nav aria-label="Menu principal" className="flex flex-col gap-1">
       {ITENS.map((i) => {
         if (i.soon) {
@@ -37,5 +39,9 @@ export default function PainelNav() {
         );
       })}
     </nav>
+    <div className="mt-auto flex flex-col gap-1 border-t border-white/30 pt-4">
+      <Link href="/" className="flex min-h-11 items-center rounded-xl px-3.5 font-semibold text-white hover:bg-white/15">Início</Link>
+    </div>
+    </>
   );
 }
