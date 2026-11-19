@@ -7,10 +7,13 @@ import { useEffect, useState } from "react";
 export default function Header({ espaco = true }) {
   const router = useRouter();
   const [logado, setLogado] = useState(false);
+  const [adm, setAdm] = useState(false);
   const [aberto, setAberto] = useState(false);
 
   useEffect(() => {
-    setLogado(document.cookie.split("; ").includes("cris_sessao=1"));
+    const c = document.cookie.split("; ");
+    setLogado(c.includes("cris_sessao=1"));
+    setAdm(c.includes("cris_papel=adm"));
   }, []);
 
   useEffect(() => {
@@ -26,6 +29,7 @@ export default function Header({ espaco = true }) {
 
   function sair() {
     document.cookie = "cris_sessao=; path=/; max-age=0; samesite=lax";
+    document.cookie = "cris_papel=; path=/; max-age=0; samesite=lax";
     setLogado(false);
     setAberto(false);
     router.push("/");
@@ -78,6 +82,7 @@ export default function Header({ espaco = true }) {
               <Link href="/" onClick={fechar} className={item}>Início</Link>
               <Link href="/agendar" onClick={fechar} className={item}>Agendar sessão</Link>
               {logado && <Link href="/sessoes" onClick={fechar} className={item}>Minhas sessões</Link>}
+              {adm && <Link href="/painel" onClick={fechar} className={item}>Painel da Cris</Link>}
               {logado ? (
                 <button type="button" onClick={sair} className={`${item} text-left`}>Sair</button>
               ) : (

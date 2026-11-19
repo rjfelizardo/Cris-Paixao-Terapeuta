@@ -4,6 +4,7 @@ import { NextResponse } from "next/server";
 // Na Fase 2 isso passa a validar a sessão real (Supabase Auth).
 export function middleware(request) {
   const logado = request.cookies.get("cris_sessao")?.value === "1";
+  const adm = request.cookies.get("cris_papel")?.value === "adm";
   const { pathname, search } = request.nextUrl;
 
   if (pathname.startsWith("/login")) {
@@ -15,6 +16,9 @@ export function middleware(request) {
     const url = new URL("/login", request.url);
     url.searchParams.set("next", pathname + search);
     return NextResponse.redirect(url);
+  }
+  if (pathname.startsWith("/painel") && !adm) {
+    return NextResponse.redirect(new URL("/sessoes", request.url));
   }
   return NextResponse.next();
 }

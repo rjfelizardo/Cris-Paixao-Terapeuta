@@ -12,9 +12,15 @@ export default function Login() {
 
   function enviar(e) {
     e.preventDefault();
+    const email = String(new FormData(e.currentTarget).get("email") || "").trim().toLowerCase();
     document.cookie = "cris_sessao=1; path=/; max-age=86400; samesite=lax";
+    // Provisório: e-mails de administrador (Fase 2 troca por papel real no banco).
+    const ehAdm = ["rjfelizardo@gmail.com"].includes(email);
+    document.cookie = ehAdm
+      ? "cris_papel=adm; path=/; max-age=86400; samesite=lax"
+      : "cris_papel=; path=/; max-age=0; samesite=lax";
     const next = new URLSearchParams(window.location.search).get("next");
-    router.push(next && next.startsWith("/") && !next.startsWith("//") ? next : "/sessoes");
+    router.push(next && next.startsWith("/") && !next.startsWith("//") ? next : ehAdm ? "/painel" : "/sessoes");
     router.refresh();
   }
 
