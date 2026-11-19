@@ -102,7 +102,7 @@ export default function Header({ espaco = true }) {
 
             <div className="mt-auto flex flex-col gap-1 border-t border-white/30 pt-4 text-white">
               <a href="https://instagram.com/crispaixaoterapeuta" className="flex min-h-11 items-center px-4 font-semibold">Instagram</a>
-              <a href="#" className="flex min-h-11 items-center px-4 font-semibold">WhatsApp</a>
+              <a href="https://wa.me/5571988731566?text=Ol%C3%A1%2C%20Cris!%20Vim%20pelo%20site." target="_blank" rel="noopener" className="flex min-h-11 items-center px-4 font-semibold">WhatsApp</a>
             </div>
           </aside>
         </div>

@@ -93,7 +93,7 @@ export default function Home() {
           </div>
           <div className="flex gap-3">
             <a href="https://instagram.com/crispaixaoterapeuta" className="flex min-h-11 items-center rounded-full border border-[#bfa8d6] px-5 font-semibold">Instagram</a>
-            <a href="#" className="flex min-h-11 items-center rounded-full border border-[#bfa8d6] px-5 font-semibold">WhatsApp</a>
+            <a href="https://wa.me/5571988731566?text=Ol%C3%A1%2C%20Cris!%20Vim%20pelo%20site." target="_blank" rel="noopener" className="flex min-h-11 items-center rounded-full border border-[#bfa8d6] px-5 font-semibold">WhatsApp</a>
           </div>
         </div>
       </footer>
