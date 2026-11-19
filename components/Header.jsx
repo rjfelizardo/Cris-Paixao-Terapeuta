@@ -5,6 +5,7 @@ import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import Icone from "./Icone";
 import PerfilAvatar from "./PerfilAvatar";
+import { sairPerfil } from "../lib/foto";
 
 const SITE = [
   { nome: "Início", href: "/", icone: "inicio" },
@@ -74,6 +75,7 @@ export default function Header({ espaco = true }) {
   function sair() {
     document.cookie = "cris_sessao=; path=/; max-age=0; samesite=lax";
     document.cookie = "cris_papel=; path=/; max-age=0; samesite=lax";
+    sairPerfil();
     setLogado(false);
     setAdm(false);
     setAberto(false);

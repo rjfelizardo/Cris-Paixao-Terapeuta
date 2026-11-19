@@ -1,69 +1,32 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { lerPerfil, prepararFoto, salvarPerfil } from "../lib/foto";
 
-// Balão de perfil com botão para subir a foto.
-// Provisório: a foto fica guardada neste aparelho (localStorage).
-// Na Fase 2 passa a ser salva na conta do usuário (Supabase).
-const CHAVE = "cris_perfil";
-
-function ler() {
-  try {
-    return JSON.parse(localStorage.getItem(CHAVE) || "{}");
-  } catch {
-    return {};
-  }
-}
-
+// Balão de perfil com botão para subir a foto (guardada por e-mail, neste aparelho).
 export default function PerfilAvatar({ compact = false }) {
   const [perfil, setPerfil] = useState({});
   const [erro, setErro] = useState("");
   const input = useRef(null);
 
   useEffect(() => {
-    setPerfil(ler());
-    const atualizar = () => setPerfil(ler());
+    setPerfil(lerPerfil());
+    const atualizar = () => setPerfil(lerPerfil());
     window.addEventListener("cris-perfil", atualizar);
     return () => window.removeEventListener("cris-perfil", atualizar);
   }, []);
 
-  function escolher(e) {
+  async function escolher(e) {
     const arquivo = e.target.files?.[0];
     e.target.value = "";
     if (!arquivo) return;
-    if (!arquivo.type.startsWith("image/")) {
-      setErro("Escolha um arquivo de imagem.");
-      return;
+    try {
+      const foto = await prepararFoto(arquivo);
+      setPerfil(salvarPerfil({ foto }));
+      setErro("");
+    } catch (err) {
+      setErro(err.message === "sem-login" ? "Entre de novo para salvar a foto." : err.message || "Não foi possível usar essa foto.");
     }
-    setErro("");
-    const url = URL.createObjectURL(arquivo);
-    const img = new Image();
-    img.onload = () => {
-      const lado = 256;
-      const canvas = document.createElement("canvas");
-      canvas.width = lado;
-      canvas.height = lado;
-      const corte = Math.min(img.width, img.height);
-      canvas
-        .getContext("2d")
-        .drawImage(img, (img.width - corte) / 2, (img.height - corte) / 2, corte, corte, 0, 0, lado, lado);
-      const foto = canvas.toDataURL("image/jpeg", 0.85);
-      URL.revokeObjectURL(url);
-      const novo = { ...ler(), foto };
-      try {
-        localStorage.setItem(CHAVE, JSON.stringify(novo));
-      } catch {
-        setErro("Não foi possível guardar a foto.");
-        return;
-      }
-      setPerfil(novo);
-      window.dispatchEvent(new Event("cris-perfil"));
-    };
-    img.onerror = () => {
-      URL.revokeObjectURL(url);
-      setErro("Não consegui abrir essa imagem.");
-    };
-    img.src = url;
   }
 
   const nome = perfil.nome || (perfil.email ? perfil.email.split("@")[0] : "Meu perfil");

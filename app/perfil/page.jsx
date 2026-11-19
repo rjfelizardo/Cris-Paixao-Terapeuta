@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import Header from "../../components/Header";
-import { lerPerfil, prepararFoto, salvarPerfil } from "../../lib/foto";
+import { lerPerfil, prepararFoto, salvarPerfil, sairPerfil } from "../../lib/foto";
 
 const PADRAO = { email: true, whatsapp: true, financeiro: true, novidades: false, antecedencia: "1d", novoAgendamento: true };
 
@@ -59,17 +59,19 @@ export default function Perfil() {
     if (!arquivo) return;
     try {
       const nova = await prepararFoto(arquivo);
-      setFoto(nova);
       salvarPerfil({ foto: nova });
+      setFoto(nova);
       setErro("");
     } catch (err) {
-      setErro(err.message || "Não foi possível usar essa foto.");
+      setErro(err.message === "sem-login" ? "Saia e entre de novo para salvar a foto." : err.message || "Não foi possível usar essa foto.");
     }
   }
 
   function removerFoto() {
     setFoto("");
-    salvarPerfil({ foto: "" });
+    try {
+      salvarPerfil({ foto: "" });
+    } catch {}
   }
 
   function mascara(v) {
@@ -92,14 +94,15 @@ export default function Perfil() {
       setErro("");
       setSalvo(true);
       setTimeout(() => setSalvo(false), 2500);
-    } catch {
-      setErro("Não foi possível salvar neste aparelho.");
+    } catch (err) {
+      setErro(err.message === "sem-login" ? "Saia e entre de novo para salvar o perfil." : "Não foi possível salvar neste aparelho.");
     }
   }
 
   function sair() {
     document.cookie = "cris_sessao=; path=/; max-age=0; samesite=lax";
     document.cookie = "cris_papel=; path=/; max-age=0; samesite=lax";
+    sairPerfil();
     router.push("/");
     router.refresh();
   }
