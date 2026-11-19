@@ -15,6 +15,9 @@ export default function Login() {
     const email = String(new FormData(e.currentTarget).get("email") || "").trim().toLowerCase();
     document.cookie = "cris_sessao=1; path=/; max-age=86400; samesite=lax";
     // Provisório: e-mails de administrador (Fase 2 troca por papel real no banco).
+    try {
+      localStorage.setItem("cris_perfil", JSON.stringify({ ...JSON.parse(localStorage.getItem("cris_perfil") || "{}"), email }));
+    } catch {}
     const ehAdm = ["rjfelizardo@gmail.com"].includes(email);
     document.cookie = ehAdm
       ? "cris_papel=adm; path=/; max-age=86400; samesite=lax"

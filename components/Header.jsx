@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import PerfilAvatar from "./PerfilAvatar";
 
 export default function Header({ espaco = true }) {
   const router = useRouter();
@@ -77,6 +78,8 @@ export default function Header({ espaco = true }) {
                 </svg>
               </button>
             </div>
+
+            {logado && <PerfilAvatar />}
 
             <nav className="flex flex-col gap-1" aria-label="Menu principal">
               <Link href="/" onClick={fechar} className={item}>Início</Link>
