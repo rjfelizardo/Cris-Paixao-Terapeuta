@@ -85,13 +85,13 @@ export default function Header({ espaco = true }) {
 
   function Item({ it, compact }) {
     const base = `flex min-h-11 items-center gap-3 rounded-xl ${compact ? "justify-center px-0" : "px-3.5"}`;
-    const rotulo = compact ? <span className="sr-only">{it.nome}</span> : <span className="truncate">{it.nome}</span>;
+    const rotulo = compact ? <span className="sr-only">{it.nome}</span> : <span className="min-w-0 truncate">{it.nome}</span>;
     if (it.soon) {
       return (
         <span className={`${base} font-semibold text-white/70`} title={`${it.nome} (em breve)`}>
           <Icone nome={it.icone} />
           {rotulo}
-          {!compact && <span className="ml-auto rounded-full bg-white/20 px-2 py-0.5 text-xs">em breve</span>}
+          {!compact && <span className="ml-auto shrink-0 whitespace-nowrap rounded-full bg-white/20 px-2 py-0.5 text-xs">em breve</span>}
         </span>
       );
     }
@@ -208,7 +208,7 @@ export default function Header({ espaco = true }) {
         id="barra-lateral"
         data-recolhido={recolhido ? "true" : "false"}
         aria-label="Menu lateral"
-        className={`fixed left-0 top-0 z-40 hidden h-screen flex-col gap-4 bg-lilac py-5 text-white transition-[width] duration-200 md:flex print:hidden ${recolhido ? "w-[72px] px-3" : "w-64 px-4"}`}
+        className={`fixed left-0 top-0 z-40 hidden h-screen bg-lilac text-white transition-[width] duration-200 md:block print:hidden ${recolhido ? "w-[72px]" : "w-64"}`}
       >
         <button
           type="button"
@@ -220,14 +220,16 @@ export default function Header({ espaco = true }) {
           <span className={`flex transition-transform ${recolhido ? "rotate-180" : ""}`}><Icone nome="seta" tamanho={14} /></span>
         </button>
 
-        <Link href="/" aria-label="Início" className="self-start">
-          {recolhido ? (
-            <img src="/logo-cp.png" alt="Cris Paixão" className="h-11 w-11 rounded-xl bg-cream object-contain p-1.5" />
-          ) : (
-            <img src="/logo.png" alt="Cris Paixão Espaço Terapêutico" className="h-12 w-auto rounded-xl bg-cream px-3 py-1.5" />
-          )}
-        </Link>
-        {Conteudo({ compact: recolhido })}
+        <div className={`flex h-full flex-col gap-4 overflow-y-auto py-5 ${recolhido ? "px-3" : "px-4"}`}>
+          <Link href="/" aria-label="Início" className="self-start">
+            {recolhido ? (
+              <img src="/logo-cp.png" alt="Cris Paixão" className="h-11 w-11 rounded-xl bg-cream object-contain p-1.5" />
+            ) : (
+              <img src="/logo.png" alt="Cris Paixão Espaço Terapêutico" className="h-12 w-auto rounded-xl bg-cream px-3 py-1.5" />
+            )}
+          </Link>
+          {Conteudo({ compact: recolhido })}
+        </div>
       </aside>
     </>
   );
