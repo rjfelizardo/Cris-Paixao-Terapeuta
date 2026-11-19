@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import PerfilAvatar from "./PerfilAvatar";
+import PainelNav from "./PainelNav";
 
 export default function Header({ espaco = true }) {
   const router = useRouter();
@@ -66,7 +67,7 @@ export default function Header({ espaco = true }) {
             role="dialog"
             aria-modal="true"
             aria-label="Menu"
-            className="absolute left-0 top-0 flex h-full w-72 max-w-[85vw] flex-col gap-6 bg-lilac p-5 text-white shadow-xl"
+            className="absolute left-0 top-0 flex h-full w-72 max-w-[85vw] flex-col gap-6 overflow-y-auto bg-lilac p-5 text-white shadow-xl"
           >
             <div className="flex items-center justify-between">
               <Link href="/" onClick={fechar} aria-label="Início">
@@ -85,13 +86,19 @@ export default function Header({ espaco = true }) {
               <Link href="/" onClick={fechar} className={item}>Início</Link>
               <Link href="/agendar" onClick={fechar} className={item}>Agendar sessão</Link>
               {logado && <Link href="/sessoes" onClick={fechar} className={item}>Minhas sessões</Link>}
-              {adm && <Link href="/painel" onClick={fechar} className={item}>Painel da Cris</Link>}
-              {logado ? (
-                <button type="button" onClick={sair} className={`${item} text-left`}>Sair</button>
-              ) : (
-                <Link href="/login" onClick={fechar} className={item}>Entrar</Link>
-              )}
+              {!logado && <Link href="/login" onClick={fechar} className={item}>Entrar</Link>}
             </nav>
+
+            {adm && (
+              <div className="flex flex-col gap-1 border-t border-white/30 pt-4">
+                <p className="px-3.5 pb-1 text-xs font-bold uppercase tracking-wider text-white/85">Painel da Cris</p>
+                <PainelNav onNavigate={fechar} />
+              </div>
+            )}
+
+            {logado && (
+              <button type="button" onClick={sair} className={`${item} text-left`}>Sair</button>
+            )}
 
             <div className="mt-auto flex flex-col gap-1 border-t border-white/30 pt-4 text-white">
               <a href="https://instagram.com/crispaixaoterapeuta" className="flex min-h-11 items-center px-4 font-semibold">Instagram</a>

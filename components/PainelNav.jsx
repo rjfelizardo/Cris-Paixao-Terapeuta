@@ -11,12 +11,11 @@ const ITENS = [
   { nome: "Horários e serviços", soon: true },
 ];
 
-export default function PainelNav() {
+export default function PainelNav({ onNavigate }) {
   const path = usePathname();
 
   return (
-    <>
-    <nav aria-label="Menu principal" className="flex flex-col gap-1">
+    <nav aria-label="Menu do painel" className="flex flex-col gap-1">
       {ITENS.map((i) => {
         if (i.soon) {
           return (
@@ -31,6 +30,7 @@ export default function PainelNav() {
           <Link
             key={i.nome}
             href={i.href}
+            onClick={onNavigate}
             aria-current={ativo ? "page" : undefined}
             className={`flex min-h-11 items-center rounded-xl px-3.5 ${ativo ? "bg-white font-bold text-ink" : "font-semibold text-white hover:bg-white/15"}`}
           >
@@ -39,9 +39,5 @@ export default function PainelNav() {
         );
       })}
     </nav>
-    <div className="mt-auto flex flex-col gap-1 border-t border-white/30 pt-4">
-      <Link href="/" className="flex min-h-11 items-center rounded-xl px-3.5 font-semibold text-white hover:bg-white/15">Início</Link>
-    </div>
-    </>
   );
 }
