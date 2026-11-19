@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { ADMINS, nomeDoEmail } from "../../lib/perfil";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
@@ -16,9 +17,9 @@ export default function Login() {
     document.cookie = "cris_sessao=1; path=/; max-age=86400; samesite=lax";
     // Provisório: e-mails de administrador (Fase 2 troca por papel real no banco).
     try {
-      localStorage.setItem("cris_perfil", JSON.stringify({ ...JSON.parse(localStorage.getItem("cris_perfil") || "{}"), email }));
+      localStorage.setItem("cris_perfil", JSON.stringify({ ...JSON.parse(localStorage.getItem("cris_perfil") || "{}"), email, nome: nomeDoEmail(email) }));
     } catch {}
-    const ehAdm = ["rjfelizardo@gmail.com"].includes(email);
+    const ehAdm = ADMINS.includes(email);
     document.cookie = ehAdm
       ? "cris_papel=adm; path=/; max-age=86400; samesite=lax"
       : "cris_papel=; path=/; max-age=0; samesite=lax";

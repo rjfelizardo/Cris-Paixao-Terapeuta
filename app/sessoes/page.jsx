@@ -1,3 +1,4 @@
+import Saudacao from "../../components/Saudacao";
 import Link from "next/link";
 import Header from "../../components/Header";
 
@@ -9,7 +10,7 @@ export default function Sessoes() {
       <Header />
       <div className="mx-auto flex max-w-xl flex-col gap-6 px-5 pb-12 pt-4">
         <div>
-          <h1 className="font-display text-3xl font-semibold">Olá, [Nome]</h1>
+          <h1 className="font-display text-3xl font-semibold"><Saudacao prefixo="Olá" /></h1>
           <p className="text-soft">Sua próxima sessão está confirmada.</p>
         </div>
 

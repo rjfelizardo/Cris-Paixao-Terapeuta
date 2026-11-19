@@ -62,7 +62,7 @@ export default function PerfilAvatar() {
     img.src = url;
   }
 
-  const nome = perfil.email ? perfil.email.split("@")[0] : "Meu perfil";
+  const nome = perfil.nome || (perfil.email ? perfil.email.split("@")[0] : "Meu perfil");
   const inicial = nome.charAt(0).toUpperCase();
 
   return (

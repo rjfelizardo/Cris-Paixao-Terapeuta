@@ -1,3 +1,4 @@
+import Saudacao from "../../components/Saudacao";
 export const metadata = { title: "Painel | Cris Paixão" };
 
 const NUMEROS = [["Sessões hoje", "3"], ["Sessões na semana", "9"], ["Recebido no mês", "R$ [0,00]"], ["Contratos pendentes", "1"]];
@@ -12,7 +13,7 @@ export default function Painel() {
     <>
       <div className="flex flex-wrap items-center justify-between gap-4">
         <div>
-          <h1 className="font-display text-4xl font-semibold leading-tight">Boa tarde, Cris</h1>
+          <h1 className="font-display text-4xl font-semibold leading-tight"><Saudacao /></h1>
           <p className="text-soft">Quarta, 14 de janeiro</p>
         </div>
         <a href="#" className="btn btn-primary !min-h-12">Bloquear horário</a>
