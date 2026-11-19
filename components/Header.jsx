@@ -33,7 +33,7 @@ export default function Header() {
   }
 
   const fechar = () => setAberto(false);
-  const item = "flex min-h-12 items-center rounded-xl px-4 font-bold text-ink hover:bg-lav";
+  const item = "flex min-h-12 items-center rounded-xl px-4 font-bold text-white hover:bg-white/15";
 
   return (
     <>
@@ -61,14 +61,14 @@ export default function Header() {
             role="dialog"
             aria-modal="true"
             aria-label="Menu"
-            className="absolute left-0 top-0 flex h-full w-72 max-w-[85vw] flex-col gap-6 bg-cream p-5 shadow-xl"
+            className="absolute left-0 top-0 flex h-full w-72 max-w-[85vw] flex-col gap-6 bg-lilac p-5 text-white shadow-xl"
           >
             <div className="flex items-center justify-between">
               <Link href="/" onClick={fechar} aria-label="Início">
-                <img src="/logo.png" alt="Cris Paixão Espaço Terapêutico" className="h-12 w-auto" />
+                <img src="/logo.png" alt="Cris Paixão Espaço Terapêutico" className="h-12 w-auto rounded-xl bg-cream px-3 py-1.5" />
               </Link>
-              <button type="button" onClick={fechar} aria-label="Fechar menu" className="flex h-11 w-11 items-center justify-center rounded-full bg-lav">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#3b2a4a" strokeWidth="2" strokeLinecap="round" aria-hidden="true">
+              <button type="button" onClick={fechar} aria-label="Fechar menu" className="flex h-11 w-11 items-center justify-center rounded-full bg-white/20">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#ffffff" strokeWidth="2" strokeLinecap="round" aria-hidden="true">
                   <path d="M6 6l12 12M18 6L6 18" />
                 </svg>
               </button>
@@ -85,7 +85,7 @@ export default function Header() {
               )}
             </nav>
 
-            <div className="mt-auto flex flex-col gap-1 border-t border-lav-line pt-4 text-soft">
+            <div className="mt-auto flex flex-col gap-1 border-t border-white/30 pt-4 text-white">
               <a href="https://instagram.com/crispaixaoterapeuta" className="flex min-h-11 items-center px-4 font-semibold">Instagram</a>
               <a href="#" className="flex min-h-11 items-center px-4 font-semibold">WhatsApp</a>
             </div>

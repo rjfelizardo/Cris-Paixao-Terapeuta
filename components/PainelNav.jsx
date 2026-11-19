@@ -18,9 +18,9 @@ export default function PainelNav() {
       {ITENS.map((i) => {
         if (i.soon) {
           return (
-            <span key={i.nome} className="flex min-h-11 items-center justify-between rounded-xl px-3.5 font-semibold opacity-60">
+            <span key={i.nome} className="flex min-h-11 items-center justify-between rounded-xl px-3.5 font-semibold text-white/85">
               {i.nome}
-              <span className="rounded-full bg-white/15 px-2 py-0.5 text-xs">em breve</span>
+              <span className="rounded-full bg-white/20 px-2 py-0.5 text-xs">em breve</span>
             </span>
           );
         }
@@ -30,7 +30,7 @@ export default function PainelNav() {
             key={i.nome}
             href={i.href}
             aria-current={ativo ? "page" : undefined}
-            className={`flex min-h-11 items-center rounded-xl px-3.5 ${ativo ? "bg-plum font-bold text-white" : "font-semibold hover:bg-white/10"}`}
+            className={`flex min-h-11 items-center rounded-xl px-3.5 ${ativo ? "bg-white font-bold text-ink" : "font-semibold text-white hover:bg-white/15"}`}
           >
             {i.nome}
           </Link>
