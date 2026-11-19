@@ -22,6 +22,9 @@ export default function PerfilAvatar({ compact = false }) {
 
   useEffect(() => {
     setPerfil(ler());
+    const atualizar = () => setPerfil(ler());
+    window.addEventListener("cris-perfil", atualizar);
+    return () => window.removeEventListener("cris-perfil", atualizar);
   }, []);
 
   function escolher(e) {
@@ -54,6 +57,7 @@ export default function PerfilAvatar({ compact = false }) {
         return;
       }
       setPerfil(novo);
+      window.dispatchEvent(new Event("cris-perfil"));
     };
     img.onerror = () => {
       URL.revokeObjectURL(url);

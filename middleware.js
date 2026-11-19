@@ -24,5 +24,5 @@ export function middleware(request) {
 }
 
 export const config = {
-  matcher: ["/agendar/:path*", "/pagamento/:path*", "/sessoes/:path*", "/painel/:path*", "/login"],
+  matcher: ["/agendar/:path*", "/pagamento/:path*", "/sessoes/:path*", "/painel/:path*", "/perfil/:path*", "/login"],
 };

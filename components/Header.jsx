@@ -140,6 +140,7 @@ export default function Header({ espaco = true }) {
         <nav className="flex flex-col gap-1" aria-label="Menu principal">
           {SITE.map((it) => <Item key={it.nome} it={it} compact={compact} />)}
           {logado && <Item it={{ nome: "Minhas sessões", href: "/sessoes", icone: "sessoes" }} compact={compact} />}
+          {logado && <Item it={{ nome: "Meu perfil", href: "/perfil", icone: "perfil" }} compact={compact} />}
           {!logado && <Item it={{ nome: "Entrar", href: "/login", icone: "entrar" }} compact={compact} />}
         </nav>
 
