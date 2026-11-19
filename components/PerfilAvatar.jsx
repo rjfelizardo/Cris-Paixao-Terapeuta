@@ -15,7 +15,7 @@ function ler() {
   }
 }
 
-export default function PerfilAvatar() {
+export default function PerfilAvatar({ compact = false }) {
   const [perfil, setPerfil] = useState({});
   const [erro, setErro] = useState("");
   const input = useRef(null);
@@ -64,6 +64,16 @@ export default function PerfilAvatar() {
 
   const nome = perfil.nome || (perfil.email ? perfil.email.split("@")[0] : "Meu perfil");
   const inicial = nome.charAt(0).toUpperCase();
+
+  if (compact) {
+    return perfil.foto ? (
+      <img src={perfil.foto} alt="Sua foto de perfil" title={nome} className="mx-auto h-11 w-11 rounded-full border-2 border-white object-cover" />
+    ) : (
+      <div title={nome} className="mx-auto flex h-11 w-11 items-center justify-center rounded-full border-2 border-white bg-white/20 font-display text-lg font-semibold" aria-hidden="true">
+        {inicial}
+      </div>
+    );
+  }
 
   return (
     <div className="flex items-center gap-3">
