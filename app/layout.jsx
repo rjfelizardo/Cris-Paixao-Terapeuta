@@ -1,8 +1,21 @@
 import "./globals.css";
 
+const URL_SITE = "https://cris-paixao-terapeuta.vercel.app";
+
 export const metadata = {
+  metadataBase: new URL(URL_SITE),
   title: "Cris Paixão | Espaço Terapêutico",
   description: "Atendimento terapêutico online com agendamento e pagamento em poucos minutos.",
+  openGraph: {
+    title: "Cris Paixão | Espaço Terapêutico",
+    description: "Atendimento terapêutico online com agendamento e pagamento em poucos minutos.",
+    url: URL_SITE,
+    siteName: "Cris Paixão Espaço Terapêutico",
+    locale: "pt_BR",
+    type: "website",
+    images: [{ url: "/og.png", width: 1200, height: 630, alt: "Cris Paixão Espaço Terapêutico" }],
+  },
+  twitter: { card: "summary_large_image", images: ["/og.png"] },
 };
 
 export default function RootLayout({ children }) {
