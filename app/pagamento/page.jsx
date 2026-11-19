@@ -15,7 +15,7 @@ export default function Pagamento() {
 
         <div className="flex flex-col gap-1 rounded-2xl bg-lav p-4">
           <div className="font-bold">Terapia Holística e Integrativa</div>
-          <div className="text-ink/90">Quarta, 14 de janeiro · 10:30 · online</div>
+          <div className="text-ink/90">Quarta, 14 de janeiro · 11:00 · online</div>
           <div className="mt-2 flex justify-between font-bold"><span>Total</span><span>R$ 300,00</span></div>
         </div>
 

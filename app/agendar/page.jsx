@@ -8,7 +8,7 @@ import { SERVICO } from "../../components/Servicos";
 const DIAS = [
   ["seg", "12"], ["ter", "13"], ["qua", "14"], ["qui", "15"], ["sex", "16"],
 ];
-const HORAS = ["08:00", "09:00", "10:30", "14:00", "15:30", "17:00"];
+const HORAS = ["08:00", "09:30", "11:00", "14:00", "15:30", "17:00"]; // sessões de 1h30
 
 function Opcao({ on, onClick, children, className = "" }) {
   return (

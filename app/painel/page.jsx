@@ -3,7 +3,7 @@ export const metadata = { title: "Painel | Cris Paixão" };
 const NUMEROS = [["Sessões hoje", "3"], ["Sessões na semana", "9"], ["Recebido no mês", "R$ [0,00]"], ["Contratos pendentes", "1"]];
 const HOJE = [
   { h: "09:00", cliente: "[Nome do cliente]", serv: "Terapia Holística e Integrativa", status: "pago" },
-  { h: "10:30", cliente: "[Nome do cliente]", serv: "Terapia Holística e Integrativa", status: "pago", destaque: true },
+  { h: "11:00", cliente: "[Nome do cliente]", serv: "Terapia Holística e Integrativa", status: "pago", destaque: true },
   { h: "15:30", cliente: "[Nome do cliente]", serv: "Terapia Holística e Integrativa", status: "aguardando" },
 ];
 
