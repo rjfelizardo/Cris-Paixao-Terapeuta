@@ -41,7 +41,7 @@ function inicioDoPeriodo(id) {
 
 // Dados de exemplo para a tela. No sistema real, vêm dos pagamentos confirmados pelo Mercado Pago.
 function gerarExemplo() {
-  const valor = 250; // valor da sessão
+  const valor = 300; // valor da sessão
   const lista = [];
   for (let i = 0; i < 26; i++) {
     const d = new Date(Date.now() - (i * 6 + (i % 3)) * 86400000);
