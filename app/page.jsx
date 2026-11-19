@@ -55,8 +55,8 @@ export default function Home() {
 
       <section className="bg-lav">
         <div className="mx-auto grid max-w-5xl items-center gap-6 px-6 py-12 md:grid-cols-2">
-          <div className="h-64 overflow-hidden rounded-2xl md:h-80">
-            <img src="/cris.jpg" alt="Cristiane Paixão sorrindo" className="h-full w-full object-cover" style={{ objectPosition: "center 20%" }} />
+          <div className="aspect-[4/5] overflow-hidden rounded-2xl md:max-h-[34rem]">
+            <img src="/cris-sobre.jpg" alt="Cristiane Paixão sorrindo em seu espaço de atendimento" className="h-full w-full object-cover" style={{ objectPosition: "center 25%" }} />
           </div>
           <div className="flex flex-col gap-4">
             <h2 className="font-display text-3xl font-semibold">Quem sou eu</h2>
