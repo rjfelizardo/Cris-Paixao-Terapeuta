@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
-export default function Header() {
+export default function Header({ espaco = true }) {
   const router = useRouter();
   const [logado, setLogado] = useState(false);
   const [aberto, setAberto] = useState(false);
@@ -37,8 +37,8 @@ export default function Header() {
 
   return (
     <>
-      {/* espaço reservado para o botão não cobrir o conteúdo */}
-      <div className="h-16" aria-hidden="true" />
+      {/* espaço reservado para o botão não cobrir o conteúdo (a home dispensa: o topo é a própria faixa lilás) */}
+      {espaco && <div className="h-16" aria-hidden="true" />}
 
       <button
         type="button"
