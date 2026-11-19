@@ -33,7 +33,7 @@ export default function Home() {
             </p>
             <div className="flex flex-col gap-2 md:flex-row">
               <Link href="/agendar" className="btn btn-primary">Agendar minha sessão</Link>
-              <a href="#servicos" className="btn text-plum">Conhecer o atendimento</a>
+              <a href="#servicos" className="btn btn-primary">Conhecer o atendimento</a>
             </div>
           </div>
         </div>
