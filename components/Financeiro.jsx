@@ -22,7 +22,7 @@ const STATUS = [
 const RELATORIOS = [
   { id: "extrato", titulo: "Extrato de pagamentos", desc: "Cada pagamento com valor, taxa e líquido." },
   { id: "mensal", titulo: "Resumo por mês", desc: "Sessões, valor bruto, taxas e líquido por mês." },
-  { id: "atendimento", titulo: "Por tipo de atendimento", desc: "Quanto cada atendimento rendeu." },
+  { id: "forma", titulo: "Por forma de pagamento", desc: "Quanto entrou em Pix e em cartão, com as taxas." },
 ];
 
 const brl = (n) => n.toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
@@ -41,14 +41,13 @@ function inicioDoPeriodo(id) {
 
 // Dados de exemplo para a tela. No sistema real, vêm dos pagamentos confirmados pelo Mercado Pago.
 function gerarExemplo() {
-  const servicos = [["[Atendimento 1]", 150], ["[Atendimento 2]", 200], ["[Atendimento 3]", 120]];
+  const valor = 250; // valor da sessão
   const lista = [];
   for (let i = 0; i < 26; i++) {
     const d = new Date(Date.now() - (i * 6 + (i % 3)) * 86400000);
-    const [servico, valor] = servicos[i % 3];
     const forma = i % 3 === 0 ? "Cartão" : "Pix";
     const status = i === 1 ? "pendente" : i === 11 ? "reembolsado" : "pago";
-    lista.push({ id: i, data: iso(d), cliente: `Cliente ${pad((i % 9) + 1)}`, servico, forma, valor, status });
+    lista.push({ id: i, data: iso(d), cliente: `Cliente ${pad((i % 9) + 1)}`, forma, valor, status });
   }
   return lista;
 }
@@ -60,9 +59,9 @@ function montarRelatorio(id, lista) {
   if (id === "extrato") {
     return {
       nome: "extrato-de-pagamentos",
-      head: ["Data", "Cliente", "Atendimento", "Forma", "Valor bruto", "Taxa", "Valor líquido", "Situação"],
-      rows: lista.map((p) => [dmy(p.data), p.cliente, p.servico, p.forma, p.valor, taxaDe(p), p.status === "pago" ? p.valor - taxaDe(p) : 0, p.status[0].toUpperCase() + p.status.slice(1)]),
-      moeda: [4, 5, 6],
+      head: ["Data", "Cliente", "Forma", "Valor bruto", "Taxa", "Valor líquido", "Situação"],
+      rows: lista.map((p) => [dmy(p.data), p.cliente, p.forma, p.valor, taxaDe(p), p.status === "pago" ? p.valor - taxaDe(p) : 0, p.status[0].toUpperCase() + p.status.slice(1)]),
+      moeda: [3, 4, 5],
     };
   }
   const agrupar = (chave) => {
@@ -86,10 +85,10 @@ function montarRelatorio(id, lista) {
       moeda: [2, 3, 4],
     };
   }
-  const linhas = agrupar((p) => p.servico).sort((a, b) => b[1].bruto - a[1].bruto);
+  const linhas = agrupar((p) => p.forma).sort((a, b) => b[1].bruto - a[1].bruto);
   return {
-    nome: "por-atendimento",
-    head: ["Atendimento", "Sessões pagas", "Valor bruto", "Taxas", "Valor líquido"],
+    nome: "por-forma-de-pagamento",
+    head: ["Forma de pagamento", "Sessões pagas", "Valor bruto", "Taxas", "Valor líquido"],
     rows: linhas.map(([k, a]) => [k, a.qtd, a.bruto, a.taxa, a.bruto - a.taxa]),
     moeda: [2, 3, 4],
   };
@@ -227,10 +226,10 @@ export default function Financeiro() {
           ))}
         </div>
         <div className="overflow-x-auto">
-          <table className="w-full min-w-170 border-collapse text-sm">
+          <table className="w-full min-w-140 border-collapse text-sm">
             <thead>
               <tr className="text-left text-xs uppercase tracking-wider text-soft">
-                {["Data", "Cliente", "Atendimento", "Forma", "Valor", "Situação"].map((h) => (
+                {["Data", "Cliente", "Forma", "Valor", "Situação"].map((h) => (
                   <th key={h} className="border-b border-lav px-3 py-2 font-bold">{h}</th>
                 ))}
               </tr>
@@ -240,14 +239,13 @@ export default function Financeiro() {
                 <tr key={p.id} className="border-b border-lav last:border-0">
                   <td className="px-3 py-3">{dmy(p.data)}</td>
                   <td className="px-3 py-3 font-bold">{p.cliente}</td>
-                  <td className="px-3 py-3">{p.servico}</td>
                   <td className="px-3 py-3">{p.forma}</td>
                   <td className="px-3 py-3 font-bold">{brl(p.valor)}</td>
                   <td className="px-3 py-3"><Selo status={p.status} /></td>
                 </tr>
               ))}
               {visiveis.length === 0 && (
-                <tr><td colSpan={6} className="px-3 py-6 text-soft">Nenhum pagamento neste período.</td></tr>
+                <tr><td colSpan={5} className="px-3 py-6 text-soft">Nenhum pagamento neste período.</td></tr>
               )}
             </tbody>
           </table>

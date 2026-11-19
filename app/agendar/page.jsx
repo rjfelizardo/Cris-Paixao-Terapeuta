@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useState } from "react";
 import Header from "../../components/Header";
-import { SERVICOS } from "../../components/Servicos";
+import { SERVICO } from "../../components/Servicos";
 
 const DIAS = [
   ["seg", "12"], ["ter", "13"], ["qua", "14"], ["qui", "15"], ["sex", "16"],
@@ -24,10 +24,9 @@ function Opcao({ on, onClick, children, className = "" }) {
 }
 
 export default function Agendar() {
-  const [servico, setServico] = useState(0);
   const [dia, setDia] = useState(1);
   const [hora, setHora] = useState(2);
-  const s = SERVICOS[servico];
+  const s = SERVICO;
 
   return (
     <main>
@@ -35,27 +34,16 @@ export default function Agendar() {
       <div className="mx-auto flex max-w-xl flex-col gap-6 px-5 pb-12 pt-4">
         <h1 className="font-display text-3xl font-semibold">Agendar sessão</h1>
 
-        <section className="flex flex-col gap-2">
-          <h2 className="eyebrow">1. Atendimento</h2>
-          {SERVICOS.map((x, i) => (
-            <button
-              key={x.id}
-              type="button"
-              aria-pressed={servico === i}
-              onClick={() => setServico(i)}
-              className={`flex items-center justify-between gap-3 rounded-2xl border-2 bg-white px-4 py-3 text-left ${servico === i ? "border-plum" : "border-transparent"}`}
-            >
-              <span>
-                <span className="block font-bold">{x.nome}</span>
-                <span className="text-sm text-soft">{x.duracao} · online</span>
-              </span>
-              <span className="font-bold">{x.valor}</span>
-            </button>
-          ))}
+        <section className="flex items-center justify-between gap-3 rounded-2xl bg-lav p-4">
+          <span>
+            <span className="block font-bold">{SERVICO.nome}</span>
+            <span className="text-sm text-soft">{SERVICO.duracao} · online</span>
+          </span>
+          <span className="font-bold">{SERVICO.valor}</span>
         </section>
 
         <section className="flex flex-col gap-2">
-          <h2 className="eyebrow">2. Dia</h2>
+          <h2 className="eyebrow">1. Dia</h2>
           <div className="grid grid-cols-5 gap-2">
             {DIAS.map(([sem, num], i) => (
               <Opcao key={num} on={dia === i} onClick={() => setDia(i)} className="flex min-h-16 flex-col items-center justify-center">
@@ -67,7 +55,7 @@ export default function Agendar() {
         </section>
 
         <section className="flex flex-col gap-2">
-          <h2 className="eyebrow">3. Horário</h2>
+          <h2 className="eyebrow">2. Horário</h2>
           <div className="grid grid-cols-3 gap-2">
             {HORAS.map((h, i) => (
               <Opcao key={h} on={hora === i} onClick={() => setHora(i)} className="min-h-12">{h}</Opcao>

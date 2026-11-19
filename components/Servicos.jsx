@@ -1,5 +1,7 @@
-export const SERVICOS = [
-  { id: 1, nome: "[Nome do atendimento 1]", desc: "[Descrição curta, uma ou duas linhas]", duracao: "[Duração]", valor: "[VALOR]" },
-  { id: 2, nome: "[Nome do atendimento 2]", desc: "[Descrição curta, uma ou duas linhas]", duracao: "[Duração]", valor: "[VALOR]" },
-  { id: 3, nome: "[Nome do atendimento 3]", desc: "[Descrição curta, uma ou duas linhas]", duracao: "[Duração]", valor: "[VALOR]" },
-];
+// A Cris trabalha com um único tipo de atendimento. Valor: R$ 250 por sessão. A duração ainda é um marcador até ela informar.
+export const SERVICO = {
+  nome: "Terapia Holística e Integrativa",
+  desc: "Atendimento individual online, com horário marcado e link da sessão enviado por e-mail.",
+  duracao: "[Duração]",
+  valor: "R$ 250,00",
+};
