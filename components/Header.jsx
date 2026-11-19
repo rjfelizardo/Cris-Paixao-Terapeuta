@@ -50,7 +50,7 @@ export default function Header({ espaco = true }) {
         aria-label="Abrir menu"
         aria-expanded={aberto}
         aria-controls="menu-lateral"
-        className="fixed left-4 top-3 z-50 flex h-12 w-12 items-center justify-center rounded-full bg-white shadow-md ring-1 ring-lav-line"
+        className="fixed left-4 top-3 z-50 flex print:hidden h-12 w-12 items-center justify-center rounded-full bg-white shadow-md ring-1 ring-lav-line"
       >
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#3b2a4a" strokeWidth="2" strokeLinecap="round" aria-hidden="true">
           <path d="M4 7h16M4 12h16M4 17h16" />
