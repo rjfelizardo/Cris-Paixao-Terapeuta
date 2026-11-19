@@ -1,9 +1,23 @@
-import Link from "next/link";
-import { cookies } from "next/headers";
-import SairButton from "./SairButton";
+"use client";
 
-export default async function Header() {
-  const logado = (await cookies()).get("cris_sessao")?.value === "1";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
+
+export default function Header() {
+  const router = useRouter();
+  const [logado, setLogado] = useState(false);
+
+  useEffect(() => {
+    setLogado(document.cookie.split("; ").includes("cris_sessao=1"));
+  }, []);
+
+  function sair() {
+    document.cookie = "cris_sessao=; path=/; max-age=0; samesite=lax";
+    setLogado(false);
+    router.push("/");
+    router.refresh();
+  }
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-lav bg-cream/95 backdrop-blur">
@@ -17,7 +31,9 @@ export default async function Header() {
               <Link href="/sessoes" className="hidden min-h-11 items-center px-3 font-bold text-plum sm:flex">
                 Minhas sessões
               </Link>
-              <SairButton />
+              <button type="button" onClick={sair} className="min-h-11 px-3 font-bold text-plum">
+                Sair
+              </button>
             </>
           ) : (
             <Link href="/login" className="hidden min-h-11 items-center px-3 font-bold text-plum sm:flex">
