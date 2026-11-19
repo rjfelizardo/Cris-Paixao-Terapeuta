@@ -12,7 +12,10 @@ export default function Login() {
 
   function enviar(e) {
     e.preventDefault();
-    router.push("/sessoes");
+    document.cookie = "cris_sessao=1; path=/; max-age=86400; samesite=lax";
+    const next = new URLSearchParams(window.location.search).get("next");
+    router.push(next && next.startsWith("/") && !next.startsWith("//") ? next : "/sessoes");
+    router.refresh();
   }
 
   return (

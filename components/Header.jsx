@@ -1,6 +1,10 @@
 import Link from "next/link";
+import { cookies } from "next/headers";
+import SairButton from "./SairButton";
 
-export default function Header() {
+export default async function Header() {
+  const logado = (await cookies()).get("cris_sessao")?.value === "1";
+
   return (
     <header className="sticky top-0 z-50 w-full border-b border-lav bg-cream/95 backdrop-blur">
       <div className="mx-auto flex w-full max-w-5xl items-center justify-between px-5 py-3">
@@ -8,9 +12,18 @@ export default function Header() {
           <img src="/logo.png" alt="Cris Paixão Espaço Terapêutico" className="h-11 w-auto" />
         </Link>
         <nav className="flex items-center gap-2">
-          <Link href="/login" className="hidden min-h-11 items-center px-3 font-bold text-plum sm:flex">
-            Entrar
-          </Link>
+          {logado ? (
+            <>
+              <Link href="/sessoes" className="hidden min-h-11 items-center px-3 font-bold text-plum sm:flex">
+                Minhas sessões
+              </Link>
+              <SairButton />
+            </>
+          ) : (
+            <Link href="/login" className="hidden min-h-11 items-center px-3 font-bold text-plum sm:flex">
+              Entrar
+            </Link>
+          )}
           <Link href="/agendar" className="btn btn-primary !min-h-11 !px-5">
             Agendar
           </Link>
