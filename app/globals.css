@@ -1,0 +1,58 @@
+@import "tailwindcss";
+
+@theme {
+  --color-ink: #3b2a4a;
+  --color-plum: #5e3a82;
+  --color-lav: #efe7f6;
+  --color-lav-line: #d8c4ea;
+  --color-cream: #fbf7f2;
+  --color-gold: #8a6a2b;
+  --color-soft: #5b4a6b;
+  --color-mint: #ddf1ee;
+  --color-mint-ink: #14564e;
+  --color-sand: #f9e7c2;
+  --color-sand-ink: #7a4f00;
+  --font-display: "Cormorant Garamond", Georgia, serif;
+  --font-body: "Nunito Sans", system-ui, sans-serif;
+}
+
+body {
+  background: var(--color-cream);
+  color: var(--color-ink);
+  font-family: var(--font-body);
+  line-height: 1.55;
+}
+
+.eyebrow {
+  font-size: 0.8rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--color-gold);
+}
+.btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 52px;
+  padding: 0 28px;
+  border-radius: 26px;
+  font-weight: 700;
+  text-decoration: none;
+  cursor: pointer;
+}
+.btn-primary { background: var(--color-plum); color: #fff; }
+.btn-primary:hover { background: var(--color-ink); }
+.btn-soft { background: var(--color-lav); color: var(--color-ink); }
+.btn-soft:hover { background: var(--color-lav-line); }
+.input {
+  min-height: 48px;
+  border: 1px solid #c9b3dd;
+  border-radius: 12px;
+  padding: 0 14px;
+  font-size: 1rem;
+  background: #fff;
+  color: var(--color-ink);
+  width: 100%;
+}
+.card { background: #fff; border-radius: 20px; box-shadow: 0 2px 14px rgba(94, 58, 130, 0.08); }
