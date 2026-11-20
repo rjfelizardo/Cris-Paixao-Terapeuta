@@ -34,7 +34,7 @@ export default function Header({ espaco = true }) {
     setLogado(c.includes("cris_sessao=1"));
     setAdm(c.includes("cris_papel=adm"));
     try {
-      setRecolhido(localStorage.getItem("cris_menu2") === "recolhido");
+      setRecolhido(localStorage.getItem("cris_menu") === "recolhido");
     } catch {}
   }, []);
 
@@ -49,11 +49,26 @@ export default function Header({ espaco = true }) {
     };
   }, [aberto]);
 
+  // computador: clicar fora da barra recolhe (deixa só os ícones)
+  useEffect(() => {
+    if (recolhido) return;
+    function fora(e) {
+      if (!window.matchMedia("(min-width: 768px)").matches) return;
+      if (e.target.closest?.("#barra-lateral")) return;
+      setRecolhido(true);
+      try {
+        localStorage.setItem("cris_menu", "recolhido");
+      } catch {}
+    }
+    document.addEventListener("mousedown", fora);
+    return () => document.removeEventListener("mousedown", fora);
+  }, [recolhido]);
+
   function alternar() {
     const novo = !recolhido;
     setRecolhido(novo);
     try {
-      localStorage.setItem("cris_menu2", novo ? "recolhido" : "aberto");
+      localStorage.setItem("cris_menu", novo ? "recolhido" : "aberto");
     } catch {}
   }
 
@@ -196,7 +211,7 @@ export default function Header({ espaco = true }) {
         id="barra-lateral"
         data-recolhido={recolhido ? "true" : "false"}
         aria-label="Menu lateral"
-        className={`fixed left-0 top-0 z-40 hidden h-screen bg-lilac text-white transition-[width] duration-200 md:block print:hidden ${recolhido ? "w-[72px]" : "w-64"}`}
+        className={`fixed inset-y-0 left-0 z-40 hidden bg-lilac text-white transition-[width] duration-200 md:block print:hidden ${recolhido ? "w-[72px]" : "w-64"}`}
       >
         <button
           type="button"
@@ -208,7 +223,7 @@ export default function Header({ espaco = true }) {
           <span className={`flex transition-transform ${recolhido ? "rotate-180" : ""}`}><Icone nome="seta" tamanho={14} /></span>
         </button>
 
-        <div className={`flex h-full flex-col gap-4 overflow-y-auto py-5 ${recolhido ? "px-3" : "px-4"}`}>
+        <div className={`flex h-full flex-col gap-4 overflow-y-auto overscroll-contain py-5 ${recolhido ? "px-3" : "px-4"}`}>
           <Link href="/" aria-label="Início" className="self-start">
             {recolhido ? (
               <img src="/logo-cp.png" alt="Cris Paixão" className="h-11 w-11 rounded-xl bg-cream object-contain p-1.5" />
