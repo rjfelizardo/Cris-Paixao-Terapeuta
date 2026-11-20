@@ -34,7 +34,7 @@ export default function Header({ espaco = true }) {
     setLogado(c.includes("cris_sessao=1"));
     setAdm(c.includes("cris_papel=adm"));
     try {
-      setRecolhido(localStorage.getItem("cris_menu") === "recolhido");
+      setRecolhido(localStorage.getItem("cris_menu2") === "recolhido");
     } catch {}
   }, []);
 
@@ -49,26 +49,11 @@ export default function Header({ espaco = true }) {
     };
   }, [aberto]);
 
-  // computador: clicar fora da barra recolhe (deixa só os ícones)
-  useEffect(() => {
-    if (recolhido) return;
-    function fora(e) {
-      if (!window.matchMedia("(min-width: 768px)").matches) return;
-      if (e.target.closest?.("#barra-lateral")) return;
-      setRecolhido(true);
-      try {
-        localStorage.setItem("cris_menu", "recolhido");
-      } catch {}
-    }
-    document.addEventListener("mousedown", fora);
-    return () => document.removeEventListener("mousedown", fora);
-  }, [recolhido]);
-
   function alternar() {
     const novo = !recolhido;
     setRecolhido(novo);
     try {
-      localStorage.setItem("cris_menu", novo ? "recolhido" : "aberto");
+      localStorage.setItem("cris_menu2", novo ? "recolhido" : "aberto");
     } catch {}
   }
 
