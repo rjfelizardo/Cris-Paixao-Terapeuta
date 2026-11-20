@@ -1,4 +1,5 @@
 import "./globals.css";
+import Header from "../components/Header";
 
 const URL_SITE = "https://cris-paixao-terapeuta.vercel.app";
 
@@ -29,7 +30,10 @@ export default function RootLayout({ children }) {
           rel="stylesheet"
         />
       </head>
-      <body>{children}</body>
+      <body>
+        <Header />
+        {children}
+      </body>
     </html>
   );
 }

@@ -3,7 +3,6 @@
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
-import Header from "../../components/Header";
 import { lerPerfil, prepararFoto, salvarPerfil, sairPerfil } from "../../lib/foto";
 
 const PADRAO = { email: true, whatsapp: true, financeiro: true, novidades: false, antecedencia: "1d", novoAgendamento: true };
@@ -112,7 +111,6 @@ export default function Perfil() {
 
   return (
     <div className="min-h-screen bg-cream">
-      <Header />
       <main className="mx-auto flex max-w-2xl flex-col gap-6 px-6 py-8">
         <div>
           <h1 className="font-display text-3xl font-semibold">Meu perfil</h1>

@@ -21,9 +21,11 @@ const PAINEL = [
 const WHATSAPP = "https://wa.me/5571988731566?text=Ol%C3%A1%2C%20Cris!%20Vim%20pelo%20site.";
 
 // Menu lateral: gaveta aberta pelo botão no celular; barra fixa e recolhível (só ícones) no computador.
-export default function Header({ espaco = true }) {
+export default function Header() {
   const router = useRouter();
   const path = usePathname();
+  const semMenu = path.startsWith("/login");
+  const espaco = path !== "/";
   const [logado, setLogado] = useState(false);
   const [adm, setAdm] = useState(false);
   const [aberto, setAberto] = useState(false);
@@ -82,6 +84,8 @@ export default function Header({ espaco = true }) {
     router.push("/");
     router.refresh();
   }
+
+  if (semMenu) return null;
 
   const fechar = () => setAberto(false);
 
@@ -211,7 +215,7 @@ export default function Header({ espaco = true }) {
         id="barra-lateral"
         data-recolhido={recolhido ? "true" : "false"}
         aria-label="Menu lateral"
-        className={`fixed inset-y-0 left-0 z-40 hidden bg-lilac text-white transition-[width] duration-200 md:block print:hidden ${recolhido ? "w-[72px]" : "w-64"}`}
+        className={`fixed inset-y-0 left-0 z-40 hidden bg-lilac text-white md:block print:hidden ${recolhido ? "w-[72px]" : "w-64"}`}
       >
         <button
           type="button"
@@ -220,10 +224,10 @@ export default function Header({ espaco = true }) {
           aria-expanded={!recolhido}
           className="absolute -right-3 top-7 z-10 flex h-6 w-6 items-center justify-center rounded-full bg-white text-lilac shadow ring-1 ring-lav-line"
         >
-          <span className={`flex transition-transform ${recolhido ? "rotate-180" : ""}`}><Icone nome="seta" tamanho={14} /></span>
+          <span className={`flex ${recolhido ? "rotate-180" : ""}`}><Icone nome="seta" tamanho={14} /></span>
         </button>
 
-        <div className={`flex h-full flex-col gap-4 overflow-y-auto overscroll-contain py-5 ${recolhido ? "px-3" : "px-4"}`}>
+        <div className={`flex h-[100svh] flex-col gap-4 overflow-y-auto overscroll-contain py-5 ${recolhido ? "px-3" : "px-4"}`}>
           <Link href="/" aria-label="Início" className="self-start">
             {recolhido ? (
               <img src="/logo-cp.png" alt="Cris Paixão" className="h-11 w-11 rounded-xl bg-cream object-contain p-1.5" />

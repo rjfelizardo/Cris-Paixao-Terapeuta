@@ -2,14 +2,12 @@
 
 import Link from "next/link";
 import { useState } from "react";
-import Header from "../../components/Header";
 
 export default function Pagamento() {
   const [forma, setForma] = useState("pix");
 
   return (
     <main>
-      <Header />
       <div className="mx-auto flex max-w-xl flex-col gap-6 px-5 pb-12 pt-4">
         <h1 className="font-display text-3xl font-semibold">Pagamento</h1>
 

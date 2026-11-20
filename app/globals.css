@@ -72,7 +72,7 @@ body {
 
 /* Menu lateral fixo no computador: o conteúdo abre espaço conforme a barra está aberta ou recolhida */
 @media (min-width: 768px) {
-  body:has(#barra-lateral) { padding-left: 16rem; transition: padding-left 0.2s; }
+  body:has(#barra-lateral) { padding-left: 16rem; }
   body:has(#barra-lateral[data-recolhido="true"]) { padding-left: 72px; }
 }
 @media print {

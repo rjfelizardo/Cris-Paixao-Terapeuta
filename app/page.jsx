@@ -1,5 +1,4 @@
 import Link from "next/link";
-import Header from "../components/Header";
 import { SERVICO } from "../components/Servicos";
 
 const PASSOS = [
@@ -11,7 +10,6 @@ const PASSOS = [
 export default function Home() {
   return (
     <main>
-      <Header espaco={false} />
 
       <section className="hero-fundo">
         <div className="mx-auto grid max-w-5xl items-center gap-8 px-6 pb-12 pt-24 md:min-h-[28rem] md:grid-cols-2 md:py-20">

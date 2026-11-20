@@ -1,13 +1,11 @@
 import Saudacao from "../../components/Saudacao";
 import Link from "next/link";
-import Header from "../../components/Header";
 
 export const metadata = { title: "Minhas sessões | Cris Paixão" };
 
 export default function Sessoes() {
   return (
     <main>
-      <Header />
       <div className="mx-auto flex max-w-xl flex-col gap-6 px-5 pb-12 pt-4">
         <div>
           <h1 className="font-display text-3xl font-semibold"><Saudacao prefixo="Olá" /></h1>
