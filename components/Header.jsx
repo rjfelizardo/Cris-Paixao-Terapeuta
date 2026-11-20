@@ -31,10 +31,14 @@ export default function Header() {
   const [aberto, setAberto] = useState(false);
   const [recolhido, setRecolhido] = useState(false);
 
+  // o menu fica no layout e não é recriado: relê o login a cada troca de tela
   useEffect(() => {
     const c = document.cookie.split("; ");
     setLogado(c.includes("cris_sessao=1"));
     setAdm(c.includes("cris_papel=adm"));
+  }, [path]);
+
+  useEffect(() => {
     try {
       setRecolhido(localStorage.getItem("cris_menu") === "recolhido");
     } catch {}
@@ -53,7 +57,7 @@ export default function Header() {
 
   // computador: clicar fora da barra recolhe (deixa só os ícones)
   useEffect(() => {
-    if (recolhido) return;
+    if (recolhido || semMenu) return;
     function fora(e) {
       if (!window.matchMedia("(min-width: 768px)").matches) return;
       if (e.target.closest?.("#barra-lateral")) return;
@@ -64,7 +68,7 @@ export default function Header() {
     }
     document.addEventListener("mousedown", fora);
     return () => document.removeEventListener("mousedown", fora);
-  }, [recolhido]);
+  }, [recolhido, semMenu]);
 
   function alternar() {
     const novo = !recolhido;
