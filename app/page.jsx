@@ -14,13 +14,8 @@ export default function Home() {
       <Header espaco={false} />
 
       <section className="hero-fundo">
-        <div className="mx-auto grid max-w-5xl items-center gap-8 px-6 pb-10 pt-20 md:grid-cols-2 md:py-16">
-          <div className="flex justify-center md:order-2">
-            <div className="h-56 w-56 overflow-hidden rounded-full border-4 border-lav-line md:h-80 md:w-80">
-              <img src="/cris.jpg" alt="Cristiane Paixão, terapeuta" className="h-full w-full object-cover" />
-            </div>
-          </div>
-          <div className="flex flex-col gap-5 text-center md:text-left">
+        <div className="mx-auto grid max-w-5xl items-center gap-8 px-6 pb-12 pt-24 md:min-h-[28rem] md:grid-cols-2 md:py-20">
+          <div className="flex flex-col gap-5 text-center md:col-start-2 md:text-left">
             <div className="flex items-center justify-center gap-3 md:justify-start">
               <img src="/logo-cp.png" alt="" className="h-12 w-auto" />
               <span className="eyebrow">Espaço Terapêutico</span>
@@ -28,12 +23,12 @@ export default function Home() {
             <h1 className="font-display text-[2.4rem] font-semibold leading-[1.1] md:text-5xl">
               Quem olha para dentro <em className="text-plum">desperta</em>
             </h1>
-            <p className="text-soft">
+            <p className="font-semibold text-ink/85">
               Um espaço de escuta e presença para você se reencontrar, com atendimento online e horário marcado em poucos minutos.
             </p>
-            <div className="flex flex-col gap-2 md:flex-row">
-              <Link href="/agendar" className="btn btn-primary">Agendar minha sessão</Link>
-              <a href="#servicos" className="btn btn-primary">Conhecer o atendimento</a>
+            <div className="flex flex-col gap-2 md:flex-row md:flex-wrap">
+              <Link href="/agendar" className="btn btn-primary whitespace-nowrap">Agendar minha sessão</Link>
+              <a href="#servicos" className="btn btn-primary whitespace-nowrap">Conhecer o atendimento</a>
             </div>
           </div>
         </div>
@@ -50,7 +45,7 @@ export default function Home() {
           </div>
           <div className="flex flex-col gap-3 md:items-end">
             <span className="font-display text-3xl font-semibold">{SERVICO.valor}</span>
-            <Link href="/agendar" className="btn btn-primary">Agendar minha sessão</Link>
+            <Link href="/agendar" className="btn btn-primary whitespace-nowrap">Agendar minha sessão</Link>
           </div>
         </article>
       </section>
